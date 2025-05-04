@@ -9,7 +9,8 @@ Scegli pure il progetto client con la tecnologia che preferisci. Sono disponibil
 - C# per .NET 8;
 - Rust.
 
-Ciascuno di essi ha un README specifico che indica come iniziare.
+Ciascun progetto ha un README specifico che indica come iniziare. Prova a compilarlo.
+
 Buon divertimento!
 
 ![Space VS Time characters](space-vs-time-characters.gif)

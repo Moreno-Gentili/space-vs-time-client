@@ -60,7 +60,7 @@ public static class SpaceVsTime
                     .WithToken(GetTokenIfAny())
                     .OnConnect((conn, identity, token) => OnConnected(conn, identity, token, tcs))
                     .OnConnectError(exc => OnConnectError(exc, tcs, tokenSource))
-                    .OnDisconnect((conn, exc) => Console.WriteLine("Disconnected"))
+                    .OnDisconnect((conn, exc) => OnDisconnected(tokenSource))
                     .Build();
     }
 
@@ -121,6 +121,12 @@ public static class SpaceVsTime
         tcs.SetResult(conn);
     }
 
+    private static void OnDisconnected(CancellationTokenSource tokenSource)
+    {
+        tokenSource.Cancel();
+        Console.WriteLine("Disconnected");
+    }
+
     private static async Task PollConnection(DbConnection conn, CancellationToken token)
     {
         using PeriodicTimer timer = new(TimeSpan.FromMilliseconds(1000.0 / 60));
@@ -138,7 +144,7 @@ public static class SpaceVsTime
         try
         {
             conn.Disconnect();
-            Console.WriteLine("Disconnected");
+            Console.WriteLine("Exiting...");
         }
         catch
         {
