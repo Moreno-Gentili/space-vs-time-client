@@ -9,7 +9,7 @@ Scegli pure il progetto client con la tecnologia che preferisci. Sono disponibil
 - C# per .NET 8;
 - Rust.
 
-Ciascun progetto ha un README specifico che indica come iniziare.
+> Ciascun progetto ha un README specifico che indica come iniziare.
 
 Buon divertimento!
 
