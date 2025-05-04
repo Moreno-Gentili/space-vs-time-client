@@ -1,0 +1,17 @@
+{
+  "name": "space-vs-time-client",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsx ./src/app.ts"
+  },
+  "packageManager": "pnpm@9.5.0",
+  "dependencies": {
+    "@clockworklabs/spacetimedb-sdk": "1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "tsx": "^4.19.3"
+  }
+}

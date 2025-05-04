@@ -1,0 +1,11 @@
+[package]
+name = "spacetime-client"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+spacetimedb-sdk = "1.1.1"
+hex = "0.4.3"
+tokio = "1.44.2"
+lazy_static = "1.5.0"
+ctrlc = "3.4.6"
