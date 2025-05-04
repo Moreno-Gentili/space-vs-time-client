@@ -3,7 +3,7 @@
 # Progetti client
 
 Clona questo repository per prepararti al workshop "Space VS Time".
-Scegli pure il progetto client con la tecnologia che preferisci. Sono disponibili questi tre:
+Scegli pure il progetto della tecnologia che preferisci. Sono disponibili questi tre:
 
 - TypeScript per Node >= 20;
 - C# per .NET 8;
