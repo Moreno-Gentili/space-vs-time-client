@@ -18,7 +18,7 @@ lazy_static! {
 pub struct SpaceVsTime;
 
 impl SpaceVsTime {
-    pub fn connect(host_name: &str, then: impl FnOnce(&DbConnection) -> Result<(), Error>) -> impl Future<Output = ()> {
+    pub fn connect(host_name: &str, then: impl FnOnce(&DbConnection) -> ()) -> impl Future<Output = ()> {
         let (sender, receiver) = oneshot::channel();
         match connect_to_spacetimedb(host_name) {
             Ok(conn) => {
@@ -30,12 +30,8 @@ impl SpaceVsTime {
                 conn.run_threaded();
                 
                 handle_ctrlc();
-
-                match then(&conn) {
-                    Ok(()) => {},
-                    Err(error) => { println!("An error occurrent on init: {}", error); }
-                }
-
+                
+                then(&conn);
                 *mutex_conn = Some(conn);
             },
             Err(_) => {

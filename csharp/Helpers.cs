@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using SpacetimeDB;
 using SpacetimeDB.Types;
 using System.IO;
+using System.Globalization;
 
 public static class TaskExtensions
 {
@@ -32,6 +33,12 @@ public static class SpaceVsTime
 {
     private const string tokenPath = "./token.txt";
     private static Identity myIdentity = default;
+
+    static SpaceVsTime()
+    {
+        Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
+        Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture;
+    }
 
     public static Task<DbConnection> Connect(string hostName)
     {
