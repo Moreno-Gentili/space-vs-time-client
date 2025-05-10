@@ -120,7 +120,7 @@ fn connect_to_spacetimedb(host_name: &str) -> Result<DbConnection, Error> {
         .build()
 }
 
-fn on_connected(_ctx: &DbConnection, identity: Identity, token: &str) {
+fn on_connected(ctx: &DbConnection, identity: Identity, token: &str) {
     match write_token(token) {
         Ok(_) => { },
         Err(err) => { eprintln!("Failed to save token: {:?}", err); }
@@ -128,6 +128,10 @@ fn on_connected(_ctx: &DbConnection, identity: Identity, token: &str) {
 
     let mut my_identity = MY_IDENTITY.lock().unwrap();
     *my_identity = Some(identity);
+
+    ctx.subscription_builder()
+       .on_error(|_, err| eprintln!("Ciao {}", err))
+       .subscribe(vec!["SELECT * FROM movables"]);
 
     println!("Connected to SpaceTimeDB with Identity: {}", identity);
 }

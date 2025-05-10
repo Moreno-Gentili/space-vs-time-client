@@ -30,11 +30,16 @@ export class SpaceVsTime {
 
 function onConnect(resolve: (conn: DbConnection) => void, conn: DbConnection, identity: Identity, token: string) {
     writeFileSync(tokenFile, token);
-    console.log('✅ Connected to SpacetimeDB with identity:', identity.toHexString());
     conn.reducers.onJoin(onJoin.bind(conn));
     conn.reducers.onMoveTo(onMoveTo.bind(conn));
     conn.reducers.onThrowTo(onThrowTo.bind(conn));
     conn.reducers.onSay(onSay.bind(conn));
+
+    conn.subscriptionBuilder()
+        .onError(ctx => { console.error(`❌ Subscription error: ${ctx.event?.message}`); })
+        .subscribe(["SELECT * FROM movables"]);
+
+    console.log('✅ Connected to SpacetimeDB with identity:', identity.toHexString());
     resolve(conn);
 };
 

@@ -117,6 +117,11 @@ public static class SpaceVsTime
     {
         myIdentity = identity;
         SaveToken(token);
+        
+        conn.SubscriptionBuilder()
+            .OnError((ctx, exc) => Console.Error.WriteLine($"❌ Subscription error: {exc.Message}"))
+            .Subscribe(["SELECT * FROM movables"]);
+
         Console.WriteLine($"✅ Connected to SpaceTimeDB with identity: {identity}");
         tcs.SetResult(conn);
     }
