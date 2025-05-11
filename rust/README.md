@@ -9,7 +9,7 @@ Compila il progetto con:
 cargo build
 ```
 
-Se la compilazione va in errore, è probabile che l'errore che trovi in output ti dica cosa manca. Se sei su Linux (anche WSL), probabilmente dovrai installare i pacchetti `openssl`,  e `pkg-config`.
+Se la compilazione va in errore, è probabile che l'errore che trovi in output ti dica cosa manca. Se sei su Linux (anche WSL), probabilmente dovrai installare i pacchetti `openssl`,  `pkg-config` e `libssl-dev`.
 
 Poi verifica che l'applicazione riesca ad avviarsi con il comando:
 
